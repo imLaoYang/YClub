@@ -9,6 +9,13 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
+    <packaging>pom</packaging>
+    <modules>
+        <module>Y-Club-subject-application-controller</module>
+        <module>Y-Club-subject-application-mq</module>
+        <module>Y-Club-subject-application-job</module>
+    </modules>
+
     <artifactId>Y-Club-subject-application</artifactId>
 
     <properties>
@@ -16,5 +23,16 @@
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>com.yang</groupId>
+            <artifactId>Y-Club-subject-infra</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+
 
 </project>

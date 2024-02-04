@@ -5,9 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.yang</groupId>
-        <artifactId>Y-Club-subject</artifactId>
+        <artifactId>Y-Club-subject-application</artifactId>
         <version>1.0-SNAPSHOT</version>
-        <relativePath>../../pom.xml</relativePath>
     </parent>
 
     <artifactId>Y-Club-subject-application-controller</artifactId>
@@ -17,5 +16,6 @@
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
 
 </project>
