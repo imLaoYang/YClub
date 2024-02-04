@@ -18,6 +18,9 @@
         <module>Y-Club-subject-infra</module>
         <module>Y-Club-subject-common</module>
         <module>Y-Club-subject-starter</module>
+        <module>Y-Club-subject-application/Y-Club-subject-application-controller</module>
+        <module>Y-Club-subject-application/Y-Club-subject-application-mq</module>
+        <module>Y-Club-subject-application/Y-Club-subject-application-job</module>
     </modules>
 
     <properties>
