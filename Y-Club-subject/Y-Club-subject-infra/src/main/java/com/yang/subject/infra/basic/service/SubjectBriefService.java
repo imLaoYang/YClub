@@ -2,7 +2,7 @@ package com.yang.subject.infra.basic.service;
 
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.yang.subject.infra.basic.po.SubjectBrief;
+import com.yang.subject.infra.basic.entity.SubjectBrief;
 
 /**
 * @author Yang

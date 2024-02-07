@@ -31,6 +31,12 @@
             <artifactId>Y-Club-subject-infra</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.yang</groupId>
+            <artifactId>Y-Club-subject-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
 

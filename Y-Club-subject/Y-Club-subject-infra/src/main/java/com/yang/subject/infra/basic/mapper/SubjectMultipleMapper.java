@@ -1,7 +1,7 @@
 package com.yang.subject.infra.basic.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.yang.subject.infra.basic.po.SubjectMultiple;
+import com.yang.subject.infra.basic.entity.SubjectMultiple;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

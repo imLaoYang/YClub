@@ -1,20 +1,18 @@
-package com.yang.subject.infra.basic.po;
+package com.yang.subject.infra.basic.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
-import java.util.Date;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 
+import java.io.Serializable;
+import java.util.Date;
+
 /**
- * 单选题信息表
- * @TableName subject_radio
+ * 题目标签表
+ * @TableName subject_label
  */
-@TableName(value ="subject_radio")
+@TableName(value ="subject_label")
 @Data
-public class SubjectRadio implements Serializable {
+public class SubjectLabel implements Serializable {
     /**
      * 主键
      */
@@ -22,24 +20,19 @@ public class SubjectRadio implements Serializable {
     private Long id;
 
     /**
-     * 题目id
+     * 标签分类
      */
-    private Long subjectId;
+    private String labelName;
 
     /**
-     * a,b,c,d
+     * 排序
      */
-    private Integer optionType;
+    private Integer sortNum;
 
     /**
-     * 选项内容
+     * 
      */
-    private String optionContent;
-
-    /**
-     * 是否正确
-     */
-    private Integer isCorrect;
+    private String categoryId;
 
     /**
      * 创建人
@@ -52,18 +45,20 @@ public class SubjectRadio implements Serializable {
     private Date createdTime;
 
     /**
-     * 修改人
+     * 更新人
      */
     private String updateBy;
 
     /**
-     * 修改时间
+     * 更新时间
      */
     private Date updateTime;
 
     /**
      * 
      */
+
+    @TableLogic
     private Integer isDeleted;
 
     @TableField(exist = false)
@@ -80,12 +75,11 @@ public class SubjectRadio implements Serializable {
         if (getClass() != that.getClass()) {
             return false;
         }
-        SubjectRadio other = (SubjectRadio) that;
+        SubjectLabel other = (SubjectLabel) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getSubjectId() == null ? other.getSubjectId() == null : this.getSubjectId().equals(other.getSubjectId()))
-            && (this.getOptionType() == null ? other.getOptionType() == null : this.getOptionType().equals(other.getOptionType()))
-            && (this.getOptionContent() == null ? other.getOptionContent() == null : this.getOptionContent().equals(other.getOptionContent()))
-            && (this.getIsCorrect() == null ? other.getIsCorrect() == null : this.getIsCorrect().equals(other.getIsCorrect()))
+            && (this.getLabelName() == null ? other.getLabelName() == null : this.getLabelName().equals(other.getLabelName()))
+            && (this.getSortNum() == null ? other.getSortNum() == null : this.getSortNum().equals(other.getSortNum()))
+            && (this.getCategoryId() == null ? other.getCategoryId() == null : this.getCategoryId().equals(other.getCategoryId()))
             && (this.getCreatedBy() == null ? other.getCreatedBy() == null : this.getCreatedBy().equals(other.getCreatedBy()))
             && (this.getCreatedTime() == null ? other.getCreatedTime() == null : this.getCreatedTime().equals(other.getCreatedTime()))
             && (this.getUpdateBy() == null ? other.getUpdateBy() == null : this.getUpdateBy().equals(other.getUpdateBy()))
@@ -98,10 +92,9 @@ public class SubjectRadio implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        result = prime * result + ((getSubjectId() == null) ? 0 : getSubjectId().hashCode());
-        result = prime * result + ((getOptionType() == null) ? 0 : getOptionType().hashCode());
-        result = prime * result + ((getOptionContent() == null) ? 0 : getOptionContent().hashCode());
-        result = prime * result + ((getIsCorrect() == null) ? 0 : getIsCorrect().hashCode());
+        result = prime * result + ((getLabelName() == null) ? 0 : getLabelName().hashCode());
+        result = prime * result + ((getSortNum() == null) ? 0 : getSortNum().hashCode());
+        result = prime * result + ((getCategoryId() == null) ? 0 : getCategoryId().hashCode());
         result = prime * result + ((getCreatedBy() == null) ? 0 : getCreatedBy().hashCode());
         result = prime * result + ((getCreatedTime() == null) ? 0 : getCreatedTime().hashCode());
         result = prime * result + ((getUpdateBy() == null) ? 0 : getUpdateBy().hashCode());
@@ -117,10 +110,9 @@ public class SubjectRadio implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", subjectId=").append(subjectId);
-        sb.append(", optionType=").append(optionType);
-        sb.append(", optionContent=").append(optionContent);
-        sb.append(", isCorrect=").append(isCorrect);
+        sb.append(", labelName=").append(labelName);
+        sb.append(", sortNum=").append(sortNum);
+        sb.append(", categoryId=").append(categoryId);
         sb.append(", createdBy=").append(createdBy);
         sb.append(", createdTime=").append(createdTime);
         sb.append(", updateBy=").append(updateBy);

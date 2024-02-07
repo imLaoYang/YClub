@@ -2,7 +2,7 @@ package com.yang.subject.infra.basic.mapper;
 
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.yang.subject.infra.basic.po.SubjectInfo;
+import com.yang.subject.infra.basic.entity.SubjectInfo;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

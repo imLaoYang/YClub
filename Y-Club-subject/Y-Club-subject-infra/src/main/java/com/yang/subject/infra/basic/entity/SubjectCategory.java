@@ -1,20 +1,18 @@
-package com.yang.subject.infra.basic.po;
+package com.yang.subject.infra.basic.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
-import java.util.Date;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 
+import java.io.Serializable;
+import java.util.Date;
+
 /**
- * 题目分类关系表
- * @TableName subject_mapping
+ * 题目分类
+ * @TableName subject_category
  */
-@TableName(value ="subject_mapping")
+@TableName(value ="subject_category")
 @Data
-public class SubjectMapping implements Serializable {
+public class SubjectCategory implements Serializable {
     /**
      * 主键
      */
@@ -22,19 +20,24 @@ public class SubjectMapping implements Serializable {
     private Long id;
 
     /**
-     * 题目id
+     * 分类名称
      */
-    private Long subjectId;
+    private String categoryName;
 
     /**
-     * 分类id
+     * 分类类型
      */
-    private Long categoryId;
+    private Integer categoryType;
 
     /**
-     * 标签id
+     * 图标连接
      */
-    private Long labelId;
+    private String imageUrl;
+
+    /**
+     * 父级id
+     */
+    private Long parentId;
 
     /**
      * 创建人
@@ -47,18 +50,20 @@ public class SubjectMapping implements Serializable {
     private Date createdTime;
 
     /**
-     * 修改人
+     * 更新人
      */
     private String updateBy;
 
     /**
-     * 修改时间
+     * 更新时间
      */
     private Date updateTime;
 
     /**
-     * 
+     * 是否删除 0: 未删除 1: 已删除
      */
+
+    @TableLogic
     private Integer isDeleted;
 
     @TableField(exist = false)
@@ -75,11 +80,12 @@ public class SubjectMapping implements Serializable {
         if (getClass() != that.getClass()) {
             return false;
         }
-        SubjectMapping other = (SubjectMapping) that;
+        SubjectCategory other = (SubjectCategory) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getSubjectId() == null ? other.getSubjectId() == null : this.getSubjectId().equals(other.getSubjectId()))
-            && (this.getCategoryId() == null ? other.getCategoryId() == null : this.getCategoryId().equals(other.getCategoryId()))
-            && (this.getLabelId() == null ? other.getLabelId() == null : this.getLabelId().equals(other.getLabelId()))
+            && (this.getCategoryName() == null ? other.getCategoryName() == null : this.getCategoryName().equals(other.getCategoryName()))
+            && (this.getCategoryType() == null ? other.getCategoryType() == null : this.getCategoryType().equals(other.getCategoryType()))
+            && (this.getImageUrl() == null ? other.getImageUrl() == null : this.getImageUrl().equals(other.getImageUrl()))
+            && (this.getParentId() == null ? other.getParentId() == null : this.getParentId().equals(other.getParentId()))
             && (this.getCreatedBy() == null ? other.getCreatedBy() == null : this.getCreatedBy().equals(other.getCreatedBy()))
             && (this.getCreatedTime() == null ? other.getCreatedTime() == null : this.getCreatedTime().equals(other.getCreatedTime()))
             && (this.getUpdateBy() == null ? other.getUpdateBy() == null : this.getUpdateBy().equals(other.getUpdateBy()))
@@ -92,9 +98,10 @@ public class SubjectMapping implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        result = prime * result + ((getSubjectId() == null) ? 0 : getSubjectId().hashCode());
-        result = prime * result + ((getCategoryId() == null) ? 0 : getCategoryId().hashCode());
-        result = prime * result + ((getLabelId() == null) ? 0 : getLabelId().hashCode());
+        result = prime * result + ((getCategoryName() == null) ? 0 : getCategoryName().hashCode());
+        result = prime * result + ((getCategoryType() == null) ? 0 : getCategoryType().hashCode());
+        result = prime * result + ((getImageUrl() == null) ? 0 : getImageUrl().hashCode());
+        result = prime * result + ((getParentId() == null) ? 0 : getParentId().hashCode());
         result = prime * result + ((getCreatedBy() == null) ? 0 : getCreatedBy().hashCode());
         result = prime * result + ((getCreatedTime() == null) ? 0 : getCreatedTime().hashCode());
         result = prime * result + ((getUpdateBy() == null) ? 0 : getUpdateBy().hashCode());
@@ -110,9 +117,10 @@ public class SubjectMapping implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", subjectId=").append(subjectId);
-        sb.append(", categoryId=").append(categoryId);
-        sb.append(", labelId=").append(labelId);
+        sb.append(", categoryName=").append(categoryName);
+        sb.append(", categoryType=").append(categoryType);
+        sb.append(", imageUrl=").append(imageUrl);
+        sb.append(", parentId=").append(parentId);
         sb.append(", createdBy=").append(createdBy);
         sb.append(", createdTime=").append(createdTime);
         sb.append(", updateBy=").append(updateBy);

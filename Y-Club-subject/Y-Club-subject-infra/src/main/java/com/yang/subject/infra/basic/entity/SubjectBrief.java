@@ -1,20 +1,18 @@
-package com.yang.subject.infra.basic.po;
+package com.yang.subject.infra.basic.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
-import java.util.Date;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 
+import java.io.Serializable;
+import java.util.Date;
+
 /**
- * 多选题信息表
- * @TableName subject_multiple
+ * 简答题
+ * @TableName subject_brief
  */
-@TableName(value ="subject_multiple")
+@TableName(value ="subject_brief")
 @Data
-public class SubjectMultiple implements Serializable {
+public class SubjectBrief implements Serializable {
     /**
      * 主键
      */
@@ -24,22 +22,12 @@ public class SubjectMultiple implements Serializable {
     /**
      * 题目id
      */
-    private Long subjectId;
+    private Integer subjectId;
 
     /**
-     * 选项类型
+     * 题目答案
      */
-    private Long optionType;
-
-    /**
-     * 选项内容
-     */
-    private String optionContent;
-
-    /**
-     * 是否正确
-     */
-    private Integer isCorrect;
+    private String subjectAnswer;
 
     /**
      * 创建人
@@ -64,6 +52,7 @@ public class SubjectMultiple implements Serializable {
     /**
      * 
      */
+    @TableLogic
     private Integer isDeleted;
 
     @TableField(exist = false)
@@ -80,12 +69,10 @@ public class SubjectMultiple implements Serializable {
         if (getClass() != that.getClass()) {
             return false;
         }
-        SubjectMultiple other = (SubjectMultiple) that;
+        SubjectBrief other = (SubjectBrief) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
             && (this.getSubjectId() == null ? other.getSubjectId() == null : this.getSubjectId().equals(other.getSubjectId()))
-            && (this.getOptionType() == null ? other.getOptionType() == null : this.getOptionType().equals(other.getOptionType()))
-            && (this.getOptionContent() == null ? other.getOptionContent() == null : this.getOptionContent().equals(other.getOptionContent()))
-            && (this.getIsCorrect() == null ? other.getIsCorrect() == null : this.getIsCorrect().equals(other.getIsCorrect()))
+            && (this.getSubjectAnswer() == null ? other.getSubjectAnswer() == null : this.getSubjectAnswer().equals(other.getSubjectAnswer()))
             && (this.getCreatedBy() == null ? other.getCreatedBy() == null : this.getCreatedBy().equals(other.getCreatedBy()))
             && (this.getCreatedTime() == null ? other.getCreatedTime() == null : this.getCreatedTime().equals(other.getCreatedTime()))
             && (this.getUpdateBy() == null ? other.getUpdateBy() == null : this.getUpdateBy().equals(other.getUpdateBy()))
@@ -99,9 +86,7 @@ public class SubjectMultiple implements Serializable {
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
         result = prime * result + ((getSubjectId() == null) ? 0 : getSubjectId().hashCode());
-        result = prime * result + ((getOptionType() == null) ? 0 : getOptionType().hashCode());
-        result = prime * result + ((getOptionContent() == null) ? 0 : getOptionContent().hashCode());
-        result = prime * result + ((getIsCorrect() == null) ? 0 : getIsCorrect().hashCode());
+        result = prime * result + ((getSubjectAnswer() == null) ? 0 : getSubjectAnswer().hashCode());
         result = prime * result + ((getCreatedBy() == null) ? 0 : getCreatedBy().hashCode());
         result = prime * result + ((getCreatedTime() == null) ? 0 : getCreatedTime().hashCode());
         result = prime * result + ((getUpdateBy() == null) ? 0 : getUpdateBy().hashCode());
@@ -118,9 +103,7 @@ public class SubjectMultiple implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
         sb.append(", subjectId=").append(subjectId);
-        sb.append(", optionType=").append(optionType);
-        sb.append(", optionContent=").append(optionContent);
-        sb.append(", isCorrect=").append(isCorrect);
+        sb.append(", subjectAnswer=").append(subjectAnswer);
         sb.append(", createdBy=").append(createdBy);
         sb.append(", createdTime=").append(createdTime);
         sb.append(", updateBy=").append(updateBy);

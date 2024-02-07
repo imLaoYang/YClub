@@ -2,7 +2,7 @@ package com.yang.subject.infra.basic.mapper;
 
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.yang.subject.infra.basic.po.SubjectRadio;
+import com.yang.subject.infra.basic.entity.SubjectRadio;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
