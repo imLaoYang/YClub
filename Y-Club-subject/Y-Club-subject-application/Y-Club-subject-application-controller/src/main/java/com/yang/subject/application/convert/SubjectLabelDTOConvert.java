@@ -5,6 +5,8 @@ import com.yang.subject.domain.entity.SubjectLabelBO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 @Mapper
 public interface SubjectLabelDTOConvert {
 
@@ -12,6 +14,7 @@ public interface SubjectLabelDTOConvert {
  SubjectLabelDTOConvert INSTANCE = Mappers.getMapper(SubjectLabelDTOConvert.class);
 
 
- SubjectLabelBO toSubjectCategoryBO(SubjectLabelDTO subjectLabelDTO);
+ SubjectLabelBO toSubjectLabelBO(SubjectLabelDTO subjectLabelDTO);
 
+ List<SubjectLabelDTO> toSubjectLabelDTOList(List<SubjectLabelBO> subjectLabelBOList);
 }

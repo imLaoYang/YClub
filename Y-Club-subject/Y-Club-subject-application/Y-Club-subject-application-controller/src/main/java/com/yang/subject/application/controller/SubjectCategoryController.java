@@ -6,7 +6,6 @@ import com.yang.subject.application.dto.SubjectCategoryDTO;
 import com.yang.subject.common.entity.Result;
 import com.yang.subject.domain.entity.SubjectCategoryBO;
 import com.yang.subject.domain.service.SubjectCategoryDomainService;
-import com.yang.subject.infra.basic.entity.SubjectCategory;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -91,10 +90,11 @@ public class SubjectCategoryController {
     try {
       Preconditions.checkNotNull(subjectCategoryDTO.getCategoryType(), "分类类型不能为空");
       SubjectCategoryBO subjectCategoryBO = SubjectCategoryDTOConvert.INSTANCE.toSubjectCategoryBO(subjectCategoryDTO);
-      List<SubjectCategory> subjectCategoryList = subjectCategoryDomainService.queryPrimaryCategory(subjectCategoryBO);
-      return Result.ok(subjectCategoryList);
+      List<SubjectCategoryBO> subjectCategoryBOList = subjectCategoryDomainService.queryPrimaryCategory(subjectCategoryBO);
+      List<SubjectCategoryDTO> subjectCategoryDTOList = SubjectCategoryDTOConvert.INSTANCE.toSubjectCategoryDTOList(subjectCategoryBOList);
+      return Result.ok(subjectCategoryDTOList);
     } catch (Exception e) {
-      return Result.fail("查询失败");
+      return Result.fail("查询失败 " + e.getMessage());
     }
   }
 
@@ -111,10 +111,11 @@ public class SubjectCategoryController {
       Preconditions.checkNotNull(subjectCategoryDTO.getParentId(), "父类ID不能为空");
       Preconditions.checkNotNull(subjectCategoryDTO.getCategoryType(), "分类类型不能为空");
       SubjectCategoryBO subjectCategoryBO = SubjectCategoryDTOConvert.INSTANCE.toSubjectCategoryBO(subjectCategoryDTO);
-      List<SubjectCategory> subjectCategoryList = subjectCategoryDomainService.queryCategoryByPrimary(subjectCategoryBO);
-      return Result.ok(subjectCategoryList);
+      List<SubjectCategoryBO> subjectCategoryBOList = subjectCategoryDomainService.queryCategoryByPrimary(subjectCategoryBO);
+      List<SubjectCategoryDTO> subjectCategoryDTOList = SubjectCategoryDTOConvert.INSTANCE.toSubjectCategoryDTOList(subjectCategoryBOList);
+      return Result.ok(subjectCategoryDTOList);
     } catch (Exception e) {
-      return Result.fail("查询失败");
+      return Result.fail("查询失败 " + e.getMessage());
     }
   }
 

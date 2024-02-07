@@ -35,28 +35,30 @@ public class SubjectCategoryDomainServiceImpl implements SubjectCategoryDomainSe
   }
 
   @Override
-  public List<SubjectCategory> queryPrimaryCategory(SubjectCategoryBO subjectCategoryBO) {
+  public List<SubjectCategoryBO> queryPrimaryCategory(SubjectCategoryBO subjectCategoryBO) {
     SubjectCategory subjectCategory = SubjectCategoryBOConvert.INSTANCE.toSubjectCategory(subjectCategoryBO);
     LambdaQueryWrapper<SubjectCategory> queryWrapper = new LambdaQueryWrapper<>();
     queryWrapper.eq(SubjectCategory::getCategoryType, subjectCategory.getCategoryType());
     List<SubjectCategory> subjectCategoryList = subjectCategoryService.list(queryWrapper);
+    List<SubjectCategoryBO> subjectCategoryBOList = SubjectCategoryBOConvert.INSTANCE.toSubjectCategoryBOList(subjectCategoryList);
     if (log.isInfoEnabled()) {
-      log.info("SubjectCategoryDomainServiceImpl.List<SubjectCategory>:{}", JSON.toJSONString(subjectCategoryList));
+      log.info("SubjectCategoryDomainServiceImpl.List<SubjectCategoryBO>:{}", JSON.toJSONString(subjectCategoryBOList));
     }
-    return subjectCategoryList;
+    return subjectCategoryBOList;
   }
 
   @Override
-  public List<SubjectCategory> queryCategoryByPrimary(SubjectCategoryBO subjectCategoryBO) {
+  public  List<SubjectCategoryBO>  queryCategoryByPrimary(SubjectCategoryBO subjectCategoryBO) {
     SubjectCategory subjectCategory = SubjectCategoryBOConvert.INSTANCE.toSubjectCategory(subjectCategoryBO);
     LambdaQueryWrapper<SubjectCategory> queryWrapper = new LambdaQueryWrapper<>();
     queryWrapper.eq(SubjectCategory::getCategoryType, subjectCategory.getCategoryType())
             .eq(SubjectCategory::getParentId, subjectCategory.getParentId());
     List<SubjectCategory> subjectCategoryList = subjectCategoryService.list(queryWrapper);
+    List<SubjectCategoryBO> subjectCategoryBOList = SubjectCategoryBOConvert.INSTANCE.toSubjectCategoryBOList(subjectCategoryList);
     if (log.isInfoEnabled()) {
-      log.info("SubjectCategoryDomainServiceImpl.List<SubjectCategory>:{}", JSON.toJSONString(subjectCategoryList));
+      log.info("SubjectCategoryDomainServiceImpl.List<SubjectCategoryBO>:{}", JSON.toJSONString(subjectCategoryBOList));
     }
-    return subjectCategoryList;
+    return subjectCategoryBOList;
   }
 
   @Override

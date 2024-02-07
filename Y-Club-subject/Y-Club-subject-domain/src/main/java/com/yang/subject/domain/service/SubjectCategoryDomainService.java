@@ -1,7 +1,6 @@
 package com.yang.subject.domain.service;
 
 import com.yang.subject.domain.entity.SubjectCategoryBO;
-import com.yang.subject.infra.basic.entity.SubjectCategory;
 
 import java.util.List;
 
@@ -14,9 +13,9 @@ public interface SubjectCategoryDomainService {
 
   Boolean update(SubjectCategoryBO subjectCategoryBO);
 
-  List<SubjectCategory>  queryPrimaryCategory(SubjectCategoryBO subjectCategoryBO);
+  List<SubjectCategoryBO>  queryPrimaryCategory(SubjectCategoryBO subjectCategoryBO);
 
-  List<SubjectCategory> queryCategoryByPrimary(SubjectCategoryBO subjectCategoryBO);
+  List<SubjectCategoryBO>  queryCategoryByPrimary(SubjectCategoryBO subjectCategoryBO);
 
   void queryCategoryAndLabel(SubjectCategoryBO subjectCategoryBO);
 

@@ -5,6 +5,8 @@ import com.yang.subject.domain.entity.SubjectCategoryBO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 @Mapper
 public interface SubjectCategoryDTOConvert {
 
@@ -14,4 +16,6 @@ public interface SubjectCategoryDTOConvert {
 
  SubjectCategoryBO toSubjectCategoryBO(SubjectCategoryDTO subjectCategoryDTO);
 
+
+ List<SubjectCategoryDTO> toSubjectCategoryDTOList(List<SubjectCategoryBO> subjectCategoryBOList);
 }

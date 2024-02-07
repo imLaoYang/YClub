@@ -6,12 +6,18 @@ import com.yang.subject.domain.convert.SubjectLabelBOConvert;
 import com.yang.subject.domain.entity.SubjectLabelBO;
 import com.yang.subject.domain.service.SubjectLabelDomainService;
 import com.yang.subject.infra.basic.entity.SubjectLabel;
+import com.yang.subject.infra.basic.entity.SubjectMapping;
 import com.yang.subject.infra.basic.service.SubjectLabelService;
+import com.yang.subject.infra.basic.service.SubjectMappingService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -19,6 +25,9 @@ public class SubjectLabelDomainServiceImpl implements SubjectLabelDomainService 
 
   @Resource
   private SubjectLabelService subjectLabelService;
+
+  @Resource
+  private SubjectMappingService subjectMappingService;
 
   @Override
   public void add(SubjectLabelBO subjectLabelBO) {
@@ -34,19 +43,37 @@ public class SubjectLabelDomainServiceImpl implements SubjectLabelDomainService 
 
   /**
    * 根据分类查询标签
+   *
    * @param subjectLabelBO
    * @return
    */
   @Override
-  public List<SubjectLabel> queryLabelByCategoryId(SubjectLabelBO subjectLabelBO) {
+  public List<SubjectLabelBO> queryLabelByCategoryId(SubjectLabelBO subjectLabelBO) {
     SubjectLabel subjectLabel = SubjectLabelBOConvert.INSTANCE.toSubjectLabel(subjectLabelBO);
-    LambdaQueryWrapper<SubjectLabel> queryWrapper = new LambdaQueryWrapper<>();
-    queryWrapper.eq(SubjectLabel::getCategoryId,subjectLabel.getCategoryId());
-    List<SubjectLabel> subjectLabelList = subjectLabelService.list(queryWrapper);
-    if (log.isInfoEnabled()){
-      log.info("SubjectLabelDomainService. List<SubjectLabel>:{}", JSON.toJSONString(subjectLabelList));
+    LambdaQueryWrapper<SubjectMapping> mappingQueryWrapper = new LambdaQueryWrapper<>();
+    mappingQueryWrapper.eq(SubjectMapping::getCategoryId, subjectLabel.getCategoryId());
+    // mapping表查询
+    List<SubjectMapping> mappingList = subjectMappingService.list(mappingQueryWrapper);
+    if (CollectionUtils.isEmpty(mappingList)) {
+      return Collections.emptyList();
     }
-    return subjectLabelList;
+    List<Long> lableIdList = mappingList.stream().map(SubjectMapping::getLabelId).collect(Collectors.toList());
+    // label表查询
+    List<SubjectLabel> subjectLabelList = subjectLabelService.listByIds(lableIdList);
+    // 封装BO
+    List<SubjectLabelBO> subjectLabelBOList = new ArrayList<>();
+    subjectLabelList.forEach(v -> {
+      SubjectLabelBO bo = new SubjectLabelBO();
+      bo.setId(v.getId());
+      bo.setCategoryId(v.getCategoryId());
+      bo.setLabelName(v.getLabelName());
+      bo.setSortNum(v.getSortNum());
+      subjectLabelBOList.add(bo);
+    });
+    if (log.isInfoEnabled()) {
+      log.info("SubjectLabelDomainService. List<SubjectLabelBO>:{}", JSON.toJSONString(subjectLabelBOList));
+    }
+    return subjectLabelBOList;
   }
 
   @Override

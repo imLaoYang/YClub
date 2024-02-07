@@ -5,7 +5,6 @@ import com.yang.subject.application.dto.SubjectLabelDTO;
 import com.yang.subject.common.entity.Result;
 import com.yang.subject.domain.entity.SubjectLabelBO;
 import com.yang.subject.domain.service.SubjectLabelDomainService;
-import com.yang.subject.infra.basic.entity.SubjectLabel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -36,7 +35,7 @@ public class SubjectLabelController {
   @PostMapping("add")
   public Result add(@RequestBody SubjectLabelDTO subjectLabelDTO) {
     try {
-      SubjectLabelBO subjectLabelBO = SubjectLabelDTOConvert.INSTANCE.toSubjectCategoryBO(subjectLabelDTO);
+      SubjectLabelBO subjectLabelBO = SubjectLabelDTOConvert.INSTANCE.toSubjectLabelBO(subjectLabelDTO);
       subjectLabelDomainService.add(subjectLabelBO);
       return Result.ok();
     } catch (Exception e) {
@@ -54,7 +53,7 @@ public class SubjectLabelController {
   public Result delete(@RequestBody SubjectLabelDTO subjectLabelDTO) {
     try {
 
-      SubjectLabelBO subjectLabelBO = SubjectLabelDTOConvert.INSTANCE.toSubjectCategoryBO(subjectLabelDTO);
+      SubjectLabelBO subjectLabelBO = SubjectLabelDTOConvert.INSTANCE.toSubjectLabelBO(subjectLabelDTO);
       Boolean result = subjectLabelDomainService.delete(subjectLabelBO);
       return Result.ok(result);
     } catch (Exception e) {
@@ -71,7 +70,7 @@ public class SubjectLabelController {
   @PostMapping("update")
   public Result update(@RequestBody SubjectLabelDTO subjectLabelDTO) {
     try {
-      SubjectLabelBO subjectLabelBO = SubjectLabelDTOConvert.INSTANCE.toSubjectCategoryBO(subjectLabelDTO);
+      SubjectLabelBO subjectLabelBO = SubjectLabelDTOConvert.INSTANCE.toSubjectLabelBO(subjectLabelDTO);
       Boolean result = subjectLabelDomainService.update(subjectLabelBO);
       return Result.ok(result);
     } catch (Exception e) {
@@ -88,9 +87,10 @@ public class SubjectLabelController {
   @PostMapping("queryLabelByCategoryId")
   public Result queryLabelByCategoryId(@RequestBody SubjectLabelDTO subjectLabelDTO) {
     try {
-      SubjectLabelBO subjectLabelBO = SubjectLabelDTOConvert.INSTANCE.toSubjectCategoryBO(subjectLabelDTO);
-        List<SubjectLabel> subjectLabelList = subjectLabelDomainService.queryLabelByCategoryId(subjectLabelBO);
-      return Result.ok(subjectLabelList);
+      SubjectLabelBO subjectLabelBO = SubjectLabelDTOConvert.INSTANCE.toSubjectLabelBO(subjectLabelDTO);
+        List<SubjectLabelBO> subjectLabelBOList = subjectLabelDomainService.queryLabelByCategoryId(subjectLabelBO);
+      List<SubjectLabelDTO> subjectLabelDTOList = SubjectLabelDTOConvert.INSTANCE.toSubjectLabelDTOList(subjectLabelBOList);
+      return Result.ok(subjectLabelDTOList);
     } catch (Exception e) {
       return Result.fail("查询失败");
     }
