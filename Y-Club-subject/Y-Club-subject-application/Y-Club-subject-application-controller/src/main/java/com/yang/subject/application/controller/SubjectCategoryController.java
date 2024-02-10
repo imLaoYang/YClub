@@ -53,7 +53,6 @@ public class SubjectCategoryController {
   @PostMapping("delete")
   public Result delete(@RequestBody SubjectCategoryDTO subjectCategoryDTO) {
     try {
-
       SubjectCategoryBO subjectCategoryBO = SubjectCategoryDTOConvert.INSTANCE.toSubjectCategoryBO(subjectCategoryDTO);
       Boolean result = subjectCategoryDomainService.delete(subjectCategoryBO);
       return Result.ok(result);

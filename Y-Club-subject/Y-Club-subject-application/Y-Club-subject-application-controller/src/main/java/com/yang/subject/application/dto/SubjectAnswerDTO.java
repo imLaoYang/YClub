@@ -5,7 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-public class OptionDTO implements Serializable {
+public class SubjectAnswerDTO implements Serializable {
 
   private static final long serialVersionUID = 1L;
 

@@ -25,4 +25,45 @@
         subject_parse,created_by,created_time,
         update_by,update_time,is_deleted
     </sql>
+    <insert id="add" useGeneratedKeys="true" keyProperty="id">
+        <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER">
+            select last_insert_id()
+        </selectKey>
+        insert into y_club.subject_info(subject_name, subject_difficult, settle_name, subject_type, subject_score,
+        subject_parse, created_by, created_time, update_by, update_time)
+        value
+        (#{subjectInfo.subjectName},#{subjectInfo.subjectDifficult},#{subjectInfo.settleName},#{subjectInfo.subjectType},#{subjectInfo.subjectScore},#{subjectInfo.subjectParse},#{subjectInfo.createdBy},#{subjectInfo.createdBy},#{subjectInfo.updateBy},#{subjectInfo.updateTime})
+    </insert>
+
+    <select id="getSubjectPage" resultMap="BaseResultMap">
+
+        select si.id,si.subject_name, si.subject_difficult, si.subject_type, si.subject_score, si.subject_parse
+        from y_club.subject_info si
+        left join y_club.subject_mapping sm on si.id = sm.subject_id
+        where
+             sm.category_id = #{categoryId}
+            and sm.label_id = #{labelId}
+            and si.is_deleted = 0
+            and sm.is_deleted = 0
+        <if test="subjectInfo.subjectDifficult != null">
+            and si.subject_difficult = #{subjectInfo.subjectDifficult}
+        </if>
+            limit #{start},#{pageSize}
+
+    </select>
+
+    <select id="countByCondition" resultType="java.lang.Long">
+        select count(1)
+        from y_club.subject_info si
+        left join y_club.subject_mapping sm on si.id = sm.subject_id
+        where  sm.category_id = #{categoryId}
+            and sm.label_id =#{labelId}
+        <if test="subjectInfo.subjectDifficult != null">
+            and si.subject_difficult = #{subjectInfo.subjectDifficult}
+        </if>
+            and si.is_deleted = 0 and sm.is_deleted = 0
+
+    </select>
+
+
 </mapper>

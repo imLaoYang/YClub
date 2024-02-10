@@ -10,6 +10,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>Y-Club-subject</module>
+        <module>Y-Club-auth</module>
     </modules>
 
     <properties>

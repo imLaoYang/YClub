@@ -1,15 +1,19 @@
 package com.yang.subject.domain.entity;
 
+import com.yang.subject.common.entity.PageInfo;
 import lombok.Data;
 
 import java.io.Serializable;
 import java.util.List;
 
 @Data
-public class SubjectInfoBO implements Serializable {
+public class SubjectInfoBO extends PageInfo implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
+  /**
+   * ID
+   */
   private Long id;
 
   /**
@@ -52,6 +56,15 @@ public class SubjectInfoBO implements Serializable {
    */
   private List<Integer> labelIds;
 
+
+  /**
+   * 答案选项
+   */
+  private List<SubjectAnswerBO> optionList;
+
+  private  Integer categoryId;
+
+  private Integer labelId;
 
 
 }

@@ -1,12 +1,13 @@
 package com.yang.subject.application.dto;
 
+import com.yang.subject.common.entity.PageInfo;
 import lombok.Data;
 
 import java.io.Serializable;
 import java.util.List;
 
 @Data
-public class SubjectInfoDTO implements Serializable {
+public class SubjectInfoDTO extends PageInfo implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
@@ -43,6 +44,12 @@ public class SubjectInfoDTO implements Serializable {
   private String subjectParse;
 
   /**
+   * 题目答案
+   */
+  private String subjectAnswer;
+
+
+  /**
    * 类型数组
    */
   private List<Integer> categoryIds;
@@ -53,9 +60,13 @@ public class SubjectInfoDTO implements Serializable {
   private List<Integer> labelIds;
 
   /**
-   *
+   * 答案选项
    */
-  private List<OptionDTO> optionList;
+  private List<SubjectAnswerDTO> optionList;
+
+  private  Long categoryId;
+
+  private Long labelId;
 
 
 }
