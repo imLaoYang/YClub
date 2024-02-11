@@ -16,7 +16,6 @@
         <module>Y-Club-subject-api</module>
         <module>Y-Club-subject-domain</module>
         <module>Y-Club-subject-infra</module>
-        <module>Y-Club-subject-common</module>
         <module>Y-Club-subject-starter</module>
         <module>Y-Club-subject-application</module>
     </modules>
@@ -26,5 +25,14 @@
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>com.yang</groupId>
+            <artifactId>Y-Club-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
 </project>

@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: y-club-auth
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      server-addr: 192.168.214.137:8848
+      config:
+        prefix: ${spring.application.name}
+        group: DEFAULT_GROUP
+        namespace: ad0c7c26-d750-4caa-8239-8a2c97bbd2e7
+        file-extension: yaml
+      discovery:
+        enabled: true
+        server-addr: 192.168.214.137:8848
+        namespace: ad0c7c26-d750-4caa-8239-8a2c97bbd2e7
