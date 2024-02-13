@@ -10,4 +10,13 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface AuthPermissionService extends IService<AuthPermission> {
 
+  Boolean addPermission(AuthPermission authPermission);
+
+  Boolean updatePermission(AuthPermission authPermission);
+
+  Boolean status(AuthPermission authPermission);
+
+  Boolean show(AuthPermission authPermission);
+
+  Boolean deletePermission(AuthPermission authPermission);
 }

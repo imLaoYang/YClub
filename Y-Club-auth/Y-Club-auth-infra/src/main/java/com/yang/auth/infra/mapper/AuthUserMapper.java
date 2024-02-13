@@ -3,6 +3,7 @@ package com.yang.auth.infra.mapper;
 import com.yang.auth.infra.entity.AuthUser;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
 * @author Yang
@@ -11,6 +12,11 @@ import org.apache.ibatis.annotations.Mapper;
 * @Entity com.yang.domain.AuthUser
 */@Mapper
 public interface AuthUserMapper extends BaseMapper<AuthUser> {
+
+   void updateUser(@Param("authUser") AuthUser authUser);
+
+   void insertAll(@Param("authUser") AuthUser authUser);
+
 
 }
 

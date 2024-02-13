@@ -5,6 +5,9 @@ import com.yang.auth.infra.entity.AuthRolePremission;
 import com.yang.auth.infra.service.AuthRolePremissionService;
 import com.yang.auth.infra.mapper.AuthRolePremissionMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
 * @author Yang
@@ -15,6 +18,11 @@ import org.springframework.stereotype.Service;
 public class AuthRolePremissionServiceImpl extends ServiceImpl<AuthRolePremissionMapper, AuthRolePremission>
     implements AuthRolePremissionService{
 
+  @Override
+  @Transactional(rollbackFor = Exception.class)
+  public Boolean addRolePermission(List<AuthRolePremission> list) {
+    return this.saveBatch(list);
+  }
 }
 
 

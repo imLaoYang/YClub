@@ -1,24 +1,17 @@
-package com.yang.auth.infra.entity;
+package com.yang.auth.application.entity;
 
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
- * 
- * @TableName auth_user
+ *
  */
-@TableName(value ="auth_user")
 @Data
-public class AuthUser implements Serializable {
+public class AuthUserDTO implements Serializable {
     /**
      * 
      */
-    @TableId
     private Long id;
 
     /**
@@ -71,31 +64,6 @@ public class AuthUser implements Serializable {
      */
     private String extJson;
 
-    /**
-     * 创建人
-     */
-    private String createdBy;
 
-    /**
-     * 创建时间
-     */
-    private Date createdTime;
-
-    /**
-     * 更新人
-     */
-    private String updateBy;
-
-    /**
-     * 更新时间
-     */
-    private Date updateTime;
-
-    /**
-     * 
-     */
-    private Integer isDeleted;
-
-    @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 }

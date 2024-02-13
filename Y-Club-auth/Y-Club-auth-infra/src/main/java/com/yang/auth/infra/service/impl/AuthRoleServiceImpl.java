@@ -15,6 +15,21 @@ import org.springframework.stereotype.Service;
 public class AuthRoleServiceImpl extends ServiceImpl<AuthRoleMapper, AuthRole>
     implements AuthRoleService{
 
+
+  @Override
+  public Boolean addRole(AuthRole authUser) {
+    return save(authUser);
+  }
+
+  @Override
+  public Boolean updateRole(AuthRole authUser) {
+    return updateById(authUser);
+  }
+
+  @Override
+  public Boolean deleteRole(AuthRole authUser) {
+    return removeById(authUser.getId());
+  }
 }
 
 

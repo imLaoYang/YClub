@@ -5,7 +5,7 @@
 <mapper namespace="com.yang.auth.infra.mapper.AuthUserMapper">
 
     <resultMap id="BaseResultMap" type="com.yang.auth.infra.entity.AuthUser">
-            <result property="id" column="id" jdbcType="BIGINT"/>
+            <id property="id" column="id" jdbcType="BIGINT"/>
             <result property="userName" column="user_name" jdbcType="VARCHAR"/>
             <result property="nickName" column="nick_name" jdbcType="VARCHAR"/>
             <result property="email" column="email" jdbcType="VARCHAR"/>
@@ -31,4 +31,21 @@
         created_time,update_by,update_time,
         is_deleted
     </sql>
+    <insert id="insertAll" useGeneratedKeys="true">
+        <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER">
+            select last_insert_id()
+        </selectKey>
+        insert into y_club.auth_user(user_name, nick_name, email, phone, password, sex, avatar,introduce, ext_json)
+        value
+        (#{authUser.userName},#{authUser.nickName},#{authUser.email},#{authUser.phone},#{authUser.password},#{authUser.sex},#{authUser.avatar},#{authUser.introduce},#{authUser.extJson})
+    </insert>
+    <update id="updateUser" >
+
+        update y_club.auth_user
+        <set>
+            <if test="authUser.userName != null">user_name=#{authUser.userName}</if>
+            <if test="uthUser.password != null" >password=#{authUser.password}</if>
+        </set>
+
+    </update>
 </mapper>

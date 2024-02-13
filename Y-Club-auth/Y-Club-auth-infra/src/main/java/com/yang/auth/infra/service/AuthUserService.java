@@ -10,4 +10,13 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface AuthUserService extends IService<AuthUser> {
 
+  Boolean register(AuthUser authUser);
+
+  Boolean updateUser(AuthUser authUser);
+
+  Boolean deleteUser(AuthUser authUser);
+
+  Boolean changeStatus(AuthUser authUser);
+
+  AuthUser getUserInfo(AuthUser authUser);
 }

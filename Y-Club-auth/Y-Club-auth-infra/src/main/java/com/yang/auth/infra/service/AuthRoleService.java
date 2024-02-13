@@ -10,4 +10,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface AuthRoleService extends IService<AuthRole> {
 
+  Boolean addRole(AuthRole authUser);
+
+  Boolean updateRole(AuthRole authUser);
+
+  Boolean deleteRole(AuthRole authUser);
 }
