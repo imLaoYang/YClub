@@ -4,6 +4,7 @@ package com.yang.subject.infra.basic.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.yang.subject.infra.basic.entity.SubjectLabel;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
 * @author Yang
@@ -12,6 +13,8 @@ import org.apache.ibatis.annotations.Mapper;
 * @Entity generator.domain.SubjectLabel
 */@Mapper
 public interface SubjectLabelMapper extends BaseMapper<SubjectLabel> {
+
+  void addLabel(@Param("subjectLabel") SubjectLabel subjectLabel);
 
 }
 

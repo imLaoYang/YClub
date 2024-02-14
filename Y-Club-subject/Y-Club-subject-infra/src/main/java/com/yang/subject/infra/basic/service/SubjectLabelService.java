@@ -11,4 +11,5 @@ import com.yang.subject.infra.basic.entity.SubjectLabel;
 */
 public interface SubjectLabelService extends IService<SubjectLabel> {
 
+  void addLabel(SubjectLabel subjectLabel);
 }

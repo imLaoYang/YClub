@@ -11,6 +11,7 @@ import com.yang.subject.infra.basic.service.SubjectLabelService;
 import com.yang.subject.infra.basic.service.SubjectMappingService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
@@ -30,9 +31,14 @@ public class SubjectLabelDomainServiceImpl implements SubjectLabelDomainService 
   private SubjectMappingService subjectMappingService;
 
   @Override
+  @Transactional(rollbackFor = Exception.class)
   public void add(SubjectLabelBO subjectLabelBO) {
     SubjectLabel subjectLabel = SubjectLabelBOConvert.INSTANCE.toSubjectLabel(subjectLabelBO);
-    subjectLabelService.save(subjectLabel);
+    subjectLabelService.addLabel(subjectLabel);
+    SubjectMapping subjectMapping = new SubjectMapping();
+    subjectMapping.setLabelId(subjectLabel.getId());
+    subjectMapping.setCategoryId(subjectLabelBO.getCategoryId());
+    subjectMappingService.save(subjectMapping);
   }
 
   @Override

@@ -15,6 +15,10 @@ import org.springframework.stereotype.Service;
 public class SubjectLabelServiceImpl extends ServiceImpl<SubjectLabelMapper, SubjectLabel>
     implements SubjectLabelService{
 
+  @Override
+  public void addLabel(SubjectLabel subjectLabel) {
+    this.baseMapper.addLabel(subjectLabel);
+  }
 }
 
 

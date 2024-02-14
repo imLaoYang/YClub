@@ -21,4 +21,11 @@
         category_id,created_by,created_time,
         update_by,update_time,is_deleted
     </sql>
+
+    <insert id="addLabel">
+        <selectKey resultType="java.lang.Long" keyProperty="subjectLabel.id" order="AFTER">
+            select last_insert_id()
+        </selectKey>
+        insert into y_club.subject_label(label_name, sort_num, category_id) value (#{subjectLabel.labelName},#{subjectLabel.sortNum},#{subjectLabel.categoryId})
+    </insert>
 </mapper>
